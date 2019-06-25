@@ -4,16 +4,48 @@
       Продукты
     </ion-title>
   </ion-toolbar>
+    <div class="scrolling-wrapper-flexbox">
+        <div *ngFor="let cat of categories" class="card"
+             (click)="selectCategory(cat.id)"
+             [ngClass]="{'selected': cat.id == currentCategory}">{{cat.name}}</div>
+    </div>
 </ion-header>
 
 <ion-content>
-    <div class="scrolling-wrapper-flexbox">
-    <div class="card">Мясо</div>
-    <div class="card">Овощи</div>
-    <div class="card">Сыр</div>
-    <div class="card">Рыба</div>
-    <div class="card">Вино</div>
-    <div class="card">Мороженое</div>
-    <div class="card">Молоко</div>
-  </div>
+
+    <div class="list">
+        <ion-list>
+            <ion-item-sliding *ngFor="let market of markets">
+                <ion-item>
+                    <ion-thumbnail>
+                        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                    </ion-thumbnail>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="8">
+                                <ion-row>
+                                    <ion-col>
+                                        <h2>{{market.name}}</h2>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col>
+                                        {{market.description}}
+                                    </ion-col>
+                                </ion-row>
+                            </ion-col>
+                            <ion-col>
+                                <ion-row>
+                                    <span class="pull-right" class="mark-large">{{market.overallRate}}</span><span class="mark-small">/10</span>
+                                </ion-row>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option>Unread</ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </div>
 </ion-content>
