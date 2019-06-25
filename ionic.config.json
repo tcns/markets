@@ -1,0 +1,7 @@
+{
+  "name": "Markets",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
