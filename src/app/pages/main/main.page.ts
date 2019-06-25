@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {CatalogService} from '../services/catalog/catalog.service';
-import {Category} from '../core/category';
-import {Market} from '../core/market';
+import {CatalogService} from '../../services/catalog/catalog.service';
+import {Category} from '../../core/category';
+import {Market} from '../../core/market';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-main',
+  templateUrl: 'main.page.html',
+  styleUrls: ['main.page.scss']
 })
-export class Tab1Page {
+export class MainPage {
 
   categories: Category[];
   markets: Market[];
