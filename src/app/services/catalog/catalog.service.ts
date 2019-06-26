@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {Category} from '../../core/category';
 import {Market} from '../../core/market';
 import {Utils} from '../../core/utils';
+import {Food} from '../../core/food';
+import {FoodType} from '../../core/foodType';
+import {TestData} from '../../core/testData';
 
 @Injectable({
   providedIn: 'root'
@@ -10,30 +13,26 @@ export class CatalogService {
 
   categories: Category[];
   markets: Market[];
+  foods: Food[];
+  foodTypes: FoodType[];
   constructor() {
-    this.categories = [
-      new Category(0, 'Все'),
-      new Category(1, 'Рыба'),
-      new Category(2, 'Мясо'),
-      new Category(3, 'Овощи'),
-      new Category(4, 'Фрукты'),
-      new Category(5, 'Напитки')
-    ];
-
-    this.markets = [
-      new Market(0, 'Даниловский', 'За хорошей рыбой и свежим мясом', 'Москва Советская 51б', '4.12324', '5.234234', 9.8),
-      new Market(1, 'Драгомиловский', 'За хорошей рыбой и свежим мясом', 'Москва Советская 51б', '4.12324', '5.234234', 9.8),
-      new Market(2, 'Восточный', 'За хорошей рыбой и свежим мясом', 'Москва Советская 51б', '4.12324', '5.234234', 9.8),
-      new Market(3, 'Западный', 'За хорошей рыбой и свежим мясом', 'Москва Советская 51б', '4.12324', '5.234234', 9.8),
-    ];
+    this.categories = TestData.categories;
+    this.markets = TestData.markets;
+    this.foodTypes = TestData.foodTypes;
+    this.foods = TestData.generateFood();
   }
 
   getCategories() {
     return this.categories;
   }
 
-  getMarkets(categoryId) {
-    console.log("getting markets");
+  getMarkets() {
+    console.log('getting markets');
     return Utils.pickRandom(this.markets, 3, 3);
+  }
+
+  getFoods(catId: number) {
+    const fArr = catId === 0 ? this.foods : this.foods.filter(a => a.foodType.category.id === catId);
+    return fArr.sort((a, b) => b.rate - a.rate);
   }
 }

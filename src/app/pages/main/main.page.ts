@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {CatalogService} from '../../services/catalog/catalog.service';
 import {Category} from '../../core/category';
-import {Market} from '../../core/market';
+import {Food} from '../../core/food';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +11,8 @@ import {Market} from '../../core/market';
 export class MainPage {
 
   categories: Category[];
-  markets: Market[];
+  foods: Food[];
+
   currentCategory: number;
   constructor(public catalog: CatalogService) {
     this.categories = catalog.getCategories();
@@ -20,7 +21,6 @@ export class MainPage {
 
   selectCategory(id) {
     this.currentCategory = id;
-    this.markets = this.catalog.getMarkets(id);
+    this.foods = this.catalog.getFoods(id);
   }
-
 }
