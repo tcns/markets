@@ -15,6 +15,20 @@ export class Utils {
         return resp;
     }
 
+    static groupBy(list, keyGetter) {
+        const map = new Map();
+        list.forEach((item) => {
+            const key = keyGetter(item);
+            const collection = map.get(key);
+            if (!collection) {
+                map.set(key, [item]);
+            } else {
+                collection.push(item);
+            }
+        });
+        return map;
+    }
+
     static createRange(num) {
         const items: number[] = [];
         for (let i = 1; i <= num; i++) {

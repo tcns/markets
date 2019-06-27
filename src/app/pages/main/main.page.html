@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Продукты
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Продукты
+        </ion-title>
+    </ion-toolbar>
     <div class="scrolling-wrapper-flexbox">
         <div *ngFor="let cat of categories" class="card"
              (click)="selectCategory(cat.id)"
@@ -12,46 +12,44 @@
 </ion-header>
 
 <ion-content>
-  <div class="list">
-    <ion-list>
-      <ion-item-sliding *ngFor="let food of foods">
-        <ion-item>
-          <ion-thumbnail>
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-thumbnail>
-          <ion-grid>
-            <ion-row>
-              <ion-col size="8">
-                <ion-row>
-                  <ion-col>
-                    <h2>{{food.foodType.name}}</h2>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                    {{food.market.name}}
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-              <ion-col>
-                <ion-row justify-content-end>
-                  <ion-col text-end>
-                    <h2>{{food.rate.toFixed(2)}}</h2>
-                  </ion-col>
-                </ion-row>
-                <ion-row justify-content-end>
-                  <ion-col text-end>
-                    <span>{{food.price.toFixed(2)}} ₽</span>
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-        <ion-item-options side="end">
-          <ion-item-option>Unread</ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-  </div>
+    <div class="list">
+        <ion-list>
+            <ion-item *ngIf="subTypeView" (click)="back()">
+                <ion-label>Назад</ion-label>
+            </ion-item>
+            <ion-item *ngFor="let food of foods" (click)="selectFood(food)">
+                <ion-thumbnail>
+                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                </ion-thumbnail>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="8">
+                            <ion-row>
+                                <ion-col>
+                                    <h2>{{food.foodType.name}}</h2>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col>
+                                    {{food.market.name}}
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col>
+                            <ion-row justify-content-end>
+                                <ion-col text-end>
+                                    <h2>{{food.rate.toFixed(2)}}</h2>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row justify-content-end>
+                                <ion-col text-end>
+                                    <span>{{food.price.toFixed(2)}} ₽</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-list>
+    </div>
 </ion-content>

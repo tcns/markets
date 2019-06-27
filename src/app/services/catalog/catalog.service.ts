@@ -15,11 +15,13 @@ export class CatalogService {
   markets: Market[];
   foods: Food[];
   foodTypes: FoodType[];
+  foodsGroups: Map<FoodType, Food[]>;
   constructor() {
     this.categories = TestData.categories;
     this.markets = TestData.markets;
     this.foodTypes = TestData.foodTypes;
     this.foods = TestData.generateFood();
+    this.foodsGroups = Utils.groupBy(this.foods, s => s.foodType);
   }
 
   getCategories() {
@@ -31,8 +33,18 @@ export class CatalogService {
     return Utils.pickRandom(this.markets, 3, 3);
   }
 
+  getFoodsByType(type: FoodType) {
+    return this.foodsGroups.get(type);
+  }
+
   getFoods(catId: number) {
-    const fArr = catId === 0 ? this.foods : this.foods.filter(a => a.foodType.category.id === catId);
-    return fArr.sort((a, b) => b.rate - a.rate);
+    const ans = [];
+    this.foodsGroups.forEach((value, key) => {
+      if (catId === 0 || key.category.id === catId) {
+        value = value.sort((a, b) => b.rate - a.rate);
+        ans.push(value[0]);
+      }
+    });
+    return ans.sort((a, b) => b.rate - a.rate);
   }
 }

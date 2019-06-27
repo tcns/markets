@@ -3,6 +3,7 @@ import {Market} from '../../core/market';
 import {Utils} from '../../core/utils';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {CatalogService} from '../../services/catalog/catalog.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-market-list',
@@ -14,7 +15,8 @@ export class MarketListPage implements OnInit {
   markets: Market[];
   createRange = Utils.createRange;
   distance = Utils.distance;
-  constructor(private geolocation: Geolocation, public catalog: CatalogService) {
+  constructor(private geolocation: Geolocation, public catalog: CatalogService,
+              private router: Router) {
     this.loadMarketList();
   }
 
