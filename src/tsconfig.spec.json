@@ -5,6 +5,10 @@
     "types": [
       "jasmine",
       "node"
+    ],
+    "typeRoots": [
+      // add path to @types
+      "node_modules/@types"
     ]
   },
   "files": [
